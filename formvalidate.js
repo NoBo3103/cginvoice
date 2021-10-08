@@ -154,4 +154,6 @@ function generateInvoice(){
 	document.getElementById("ith10").innerHTML = "SUM of SGST on all ITEMS (in INR)";
 	document.getElementById("ith11").innerHTML = "SUM of CGST on all ITEMS (in INR)";
 	document.getElementById("ith12").innerHTML = "FINAL PRICE";
+    document.getElementById("printTable").style.display="block";
 }
+
