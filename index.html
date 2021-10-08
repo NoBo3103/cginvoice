@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+	  <script src="validation.js"></script>
+   </head>
+   <body>
+      <h1>Invoice Generator </h1>
+      <hr>
+      <span id="error"></span>
+      <br>
+      <div id="add-item-section">
+         <form action="" id="item" onsubmit="return abc()">
+            <label for="itemname">Item Name *:</label>
+            <input type="text" id="item-name" name="itemname" placeholder="Enter the item name">
+            <label for="price">Price*:</label>
+            <input type="number" id="price" name="price" placeholder="Enter price">
+            <label for="discount">Discount*:</label>
+            <input type="number" name="discount" id="discount"  placeholder="Enter discount" >
+            <button id="add-item-button" >Add Item</button>
+         </form>
+      </div>
+      <hr>
+      <div id="invoice-div">
+         <h2 id="heading"></h2>
+      </div>
+      <br>
+      <button id="generate-invoice" value="Genrate Invoice">Genrate Invoice</button>
+     <script>
+document.forms[0].elements[0].focus();
+
+function abc(){
+    var x = document.getElementById("item-name").value;
+    var y = document.getElementById("price").value;
+    var z = document.getElementById("discount").value;
+    var content = document.getElementById("error").innerHTML;
+    var result = (y - Math.floor(y)) !== 0; 
+    var result2 = (z - Math.floor(z)) !== 0; 
+    if (x == null || x == "") {
+        nameError = "Please enter item name";
+        document.getElementById("error").innerHTML = nameError; 
+        return false;
+    } 
+    else if (y == null || y == "") {
+        priceError = "Please enter price";
+        document.getElementById("error").innerHTML = priceError; 
+    }
+    else if(y < 0 || result) {
+            nonNegDecError = "Price should be non negative decimal number.";
+            document.getElementById("error").innerHTML = nonNegDecError; 
+            return false;
+    }
+    else if (z == null || z == "") {
+        discountError = "Please enter discount";
+        document.getElementById("error").innerHTML = discountError; 
+        return false;
+    } 
+    else if (z < 0 || z > 100) {
+        nonNegDecIntError = "Discount should be decimal and in between (1-100).";
+        document.getElementById("error").innerHTML = nonNegDecIntError; 
+        return false;
+    } else {
+        successDiv = " ";
+        document.getElementById("error").innerHTML = successDiv;
+        alert('Invoice Created');
+    }
+
+    return false;
+}
+
+</script>
+   </body>
+</html>
