@@ -5,7 +5,6 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Invoice Generator</title>
-	  <script src="validation.js"></script>
    </head>
    <body>
       <h1>Invoice Generator </h1>
@@ -13,7 +12,7 @@
       <span id="error"></span>
       <br>
       <div id="add-item-section">
-         <form action="" id="item" onsubmit="return abc()">
+         <form id="item" onsubmit="return validate()">
             <label for="itemname">Item Name *:</label>
             <input type="text" id="item-name" name="itemname" placeholder="Enter the item name">
             <label for="price">Price*:</label>
@@ -26,13 +25,22 @@
       <hr>
       <div id="invoice-div">
          <h2 id="heading"></h2>
+		 <div id="invoice-div">
+			 <table id="invoice-table" style="display: none;">
+				<tr id="items-table">
+					<th>Item name</th>
+					<th>Price (in INR)</th>
+					<th>Discount (in %)</th>
+				</tr>
+			 </table>
+		 </div>
       </div>
       <br>
       <button id="generate-invoice" value="Genrate Invoice">Genrate Invoice</button>
      <script>
 document.forms[0].elements[0].focus();
 
-function abc(){
+function validate(){
     var x = document.getElementById("item-name").value;
     var y = document.getElementById("price").value;
     var z = document.getElementById("discount").value;
@@ -47,6 +55,7 @@ function abc(){
     else if (y == null || y == "") {
         priceError = "Please enter price";
         document.getElementById("error").innerHTML = priceError; 
+		return false;
     }
     else if(y < 0 || result) {
             nonNegDecError = "Price should be non negative decimal number.";
@@ -63,9 +72,11 @@ function abc(){
         document.getElementById("error").innerHTML = nonNegDecIntError; 
         return false;
     } else {
-        successDiv = " ";
-        document.getElementById("error").innerHTML = successDiv;
-        alert('Invoice Created');
+        document.getElementById("error").innerHTML = "";
+        document.getElementById("heading").innerHTML="All Items";
+		document.getElementById("invoice-table").style.display = inline-block;
+		alert('Invoice Created');
+		return false;
     }
 
     return false;
