@@ -5,83 +5,62 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Invoice Generator</title>
+	  <link rel="stylesheet" href="style.css">
+	  <script defer src="formvalidate.js"></script>
    </head>
    <body>
-      <h1>Invoice Generator </h1>
-      <hr>
-      <span id="error"></span>
-      <br>
-      <div id="add-item-section">
-         <form id="item" onsubmit="return validate()">
-            <label for="itemname">Item Name *:</label>
-            <input type="text" id="item-name" name="itemname" placeholder="Enter the item name">
-            <label for="price">Price*:</label>
-            <input type="number" id="price" name="price" placeholder="Enter price">
-            <label for="discount">Discount*:</label>
-            <input type="number" name="discount" id="discount"  placeholder="Enter discount" >
-            <button id="add-item-button" >Add Item</button>
-         </form>
-      </div>
-      <hr>
-      <div id="invoice-div">
-         <h2 id="heading"></h2>
-		 <div id="invoice-div">
-			 <table id="invoice-table" style="display: none;">
-				<tr id="items-table">
-					<th>Item name</th>
-					<th>Price (in INR)</th>
-					<th>Discount (in %)</th>
-				</tr>
-			 </table>
-		 </div>
-      </div>
-      <br>
-      <button id="generate-invoice" value="Genrate Invoice">Genrate Invoice</button>
-     <script>
-document.forms[0].elements[0].focus();
-
-function validate(){
-    var x = document.getElementById("item-name").value;
-    var y = document.getElementById("price").value;
-    var z = document.getElementById("discount").value;
-    var content = document.getElementById("error").innerHTML;
-    var result = (y - Math.floor(y)) !== 0; 
-    var result2 = (z - Math.floor(z)) !== 0; 
-    if (x == null || x == "") {
-        nameError = "Please enter item name";
-        document.getElementById("error").innerHTML = nameError; 
-        return false;
-    } 
-    else if (y == null || y == "") {
-        priceError = "Please enter price";
-        document.getElementById("error").innerHTML = priceError; 
-		return false;
-    }
-    else if(y < 0 || result) {
-            nonNegDecError = "Price should be non negative decimal number.";
-            document.getElementById("error").innerHTML = nonNegDecError; 
-            return false;
-    }
-    else if (z == null || z == "") {
-        discountError = "Please enter discount";
-        document.getElementById("error").innerHTML = discountError; 
-        return false;
-    } 
-    else if (z < 0 || z > 100) {
-        nonNegDecIntError = "Discount should be decimal and in between (1-100).";
-        document.getElementById("error").innerHTML = nonNegDecIntError; 
-        return false;
-    } else {
-        document.getElementById("error").innerHTML = "";
-        document.getElementById("heading").innerHTML="All Items";
-		document.getElementById("invoice-table").style.display = inline-block;
-		alert('Invoice Created');
-		return false;
-    }
-
-    return false;
-}
-
-</script>
+	<h1>Invoice Generator</h1>
+	<hr>
+	<span id = "error"></span>
+	<br>
+	
+	<div id = "add-item-section">
+		<label>Item name</label>
+		<input id = "item-name" type = "text" placeholder = "Enter item name">
+		
+		<label>Price</label>
+		<input id = "price" type = "number" placeholder = "Enter price">
+		
+		<label>Discount</label>
+		<input id = "discount" type = "number" placeholder = "Enter discount">
+		
+		<button id = "add-item-button" text = "Add Item" onclick = "errorCheck()">Add Item</button>
+	</div>
+	<hr><br><br>
+	
+	<div id = "invoice-div">
+		<h2 id = "heading"></h2>
+		
+		<table id = "invoice-table" style="display: none;">
+			<tr>
+				<th class = "first-column" id = "ith1"></th>
+				<th class = "center-column" id = "ith2"></th>
+				<th class = "center-column" id = "ith3"></th>
+				<th class = "center-column" id = "ith4"></th>
+				<th class = "center-column" id = "ith5"></th>
+				<th class = "last-column" id = "ith6"></th>
+			</tr>
+			
+			<tr>
+				<th class = "first-column" id = "ith7"></th>
+				<th class = "center-column" id = "ith8"></th>
+				<th class = "center-column" id = "ith9"></th>
+				<th class = "center-column" id = "ith10"></th>
+				<th class = "center-column" id = "ith11"></th>
+				<th class = "last-column" id = "ith12"></th>
+	</tr>
+		</table>
+		
+		<table id = "items-table" style="display: none;">
+			<tr>
+				<th class = "first-column" id = "th1"></th>
+				<th class = "center-column" id = "th2"></th>
+				<th class = "last-column" id = "th3"></th>
+			</tr>
+		</table>
+	</div>
+	<br>
+	
+	<button id = "generate-invoice" onclick = "generateInvoice()">Generate Invoice</button>
    </body>
 </html>
